@@ -1,0 +1,27 @@
+{
+  "name": "polaris-intern-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.42",
+    "axios": "^0.27.2",
+    "flowbite": "^1.4.7",
+    "vue": "^3.2.25",
+    "vue-facing-decorator": "^2.0.4",
+    "vue-google-oauth2": "^1.5.8",
+    "vue-router": "^4.0.16",
+    "vue3-google-oauth2": "^1.0.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.2",
+    "vite": "^2.9.9"
+  }
+}
