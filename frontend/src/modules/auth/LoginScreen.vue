@@ -3,8 +3,6 @@ import { Component, Vue } from 'vue-facing-decorator'
 @Component({
 })
 export default class LoginScreen extends Vue {
-  isInit: boolean = false
-  isSignIn: boolean = false
   onLogin() {
     localStorage.isLoginScreen = true;
   }
