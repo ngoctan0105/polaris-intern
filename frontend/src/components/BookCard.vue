@@ -1,12 +1,21 @@
 <script lang="ts">
 import { Prop, Component, Vue } from "vue-facing-decorator";
-@Component({
-})
+@Component({})
 export default class BookCard extends Vue {
   @Prop
-  name!: string
+  isbn!: string;
   @Prop
-  cover!: string
+  name!: string;
+  @Prop
+  cover!: string;
+  @Prop
+  author!: string;
+  @Prop
+  publisher!: string;
+  @Prop
+  quantity!: number;
+  @Prop
+  description!: string;
 }
 </script>
 
@@ -15,7 +24,7 @@ export default class BookCard extends Vue {
     class="px-3 pt-3 book-card font-sans mx-6 my-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-lg hover:bg-gray-100"
     href="/detail"
   >
-    <div href="#">
+    <div href="">
       <img class="rounded-lg hover:scale-110" :src="cover" alt="" />
     </div>
     <div class="p-5">
@@ -43,6 +52,15 @@ export default class BookCard extends Vue {
           />
         </svg>
       </button>
+      <DetailScreen
+        :isbn="isbn"
+        :name="name"
+        :cover="cover"
+        :author="author"
+        :publisher="publisher"
+        :quantity="quantity"
+        :description="description"
+      />
     </div>
   </a>
 </template>

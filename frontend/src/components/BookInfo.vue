@@ -1,9 +1,20 @@
 <script lang="ts">
-import { Component, Vue } from "vue-facing-decorator";
+import { Prop, Component, Vue } from "vue-facing-decorator";
 @Component({
 })
 export default class BookInfo extends Vue {
-
+  @Prop
+  isbn!: string;
+  @Prop
+  name!: string;
+  @Prop
+  cover!: string;
+  @Prop
+  author!: string;
+  @Prop
+  publisher!: string;
+  @Prop
+  quantity!: number;
 }
 </script>
 
@@ -14,7 +25,7 @@ export default class BookInfo extends Vue {
     <div class="col-span-4 px-12">
       <img
         class="rounded-lg my-6 shadow-lg"
-        src="https://images-na.ssl-images-amazon.com/images/I/71NFcRl66bL.jpg"
+        :src="cover"
         alt=""
       />
     </div>
@@ -23,7 +34,7 @@ export default class BookInfo extends Vue {
       <div
         class="mb-2 text-2xl font-bold tracking-tight text-gray-900"
       >
-        Harry Potter and the Order of the Phoenix
+        {{ name }}
       </div>
       <div class="bg-black h-1 mb-8"></div>
       <div class="text-lg my-2 grid grid-cols-3">
@@ -45,7 +56,7 @@ export default class BookInfo extends Vue {
           ISBN:
         </div>
 
-        <p class="col-span-2">0123456789</p>
+        <p class="col-span-2">{{ isbn }}</p>
       </div>
 
       <div class="text-lg my-2 grid grid-cols-3">
@@ -69,7 +80,7 @@ export default class BookInfo extends Vue {
           Author:
         </div>
 
-        <p class="col-span-2">J.K. Rowling</p>
+        <p class="col-span-2">{{ author }}</p>
       </div>
 
       <div class="text-lg my-2 grid grid-cols-3">
@@ -90,7 +101,7 @@ export default class BookInfo extends Vue {
           Publisher:
         </div>
 
-        <p class="col-span-2">Scholastic Inc.</p>
+        <p class="col-span-2">{{ publisher }}</p>
       </div>
 
       <div class="text-lg my-2 grid grid-cols-3">
@@ -120,7 +131,7 @@ export default class BookInfo extends Vue {
           Quantity:
         </div>
 
-        <p class="col-span-2">20</p>
+        <p class="col-span-2">{{ quantity }}</p>
       </div>
 
       <button

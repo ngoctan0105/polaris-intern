@@ -1,11 +1,20 @@
 <script lang="ts">
-import { Component, Vue } from 'vue-facing-decorator'
-@Component({
-})
+import { Component, Vue } from "vue-facing-decorator";
+import { decodeCredential } from 'vue3-google-login'
+import { googleTokenLogin } from "vue3-google-login";
+@Component({})
 export default class LoginScreen extends Vue {
   onLogin() {
     localStorage.isLoginScreen = true;
+    googleTokenLogin().then((response) => {
+      console.log("Handle the response", response);
+    });
   }
+  callback = (response) => {
+    // decodeCredential will retrive the JWT payload from the credential
+    const userData = decodeCredential(response.credential);
+    console.log("Handle the userData", userData);
+  };
 }
 </script>
 
@@ -33,6 +42,7 @@ export default class LoginScreen extends Vue {
               role="button"
               style="text-transform: none"
               @click="onLogin()"
+              :callback="callback"
             >
               <svg
                 aria-hidden="true"
@@ -63,6 +73,7 @@ export default class LoginScreen extends Vue {
               </div>
             </a>
           </div>
+          <GoogleLogin :callback="callback" prompt auto-login />
         </form>
       </div>
     </div>
