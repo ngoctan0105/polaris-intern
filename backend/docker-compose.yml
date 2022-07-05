@@ -1,0 +1,62 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: ./app
+    environment:
+      - APP_ENV=local
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=polaris-intern
+      - DB_USERNAME=root
+      - DB_PASSWORD=123456
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+    working_dir: /var/www/server
+    volumes:
+      - ./app:/var/www:cached
+      - ./app/fpm/php.ini:/usr/local/etc/php/php.ini
+      - ./app/fpm/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./app/supervisor/supervisord.d:/etc/supervisor/conf.d
+      - ./app/supervisor/supervisord.conf:/etc/supervisord.conf
+    restart: unless-stopped
+    command:
+      bash ./script.sh
+    networks:
+      - polaris-intern
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_DATABASE=polaris-intern
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - 3307:3306
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - polaris-intern
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      - PMA_HOST=db
+    ports:
+      - 8091:80
+    networks:
+      - polaris-intern
+  nginx:
+    image: nginx:1.15.9-alpine
+    working_dir: /var/www/public
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./app/public:/var/www/public
+    restart: unless-stopped
+    ports:
+      - 8087:80
+    networks:
+      - polaris-intern
+volumes:
+  database:
+  redis_volume:
+networks:
+  polaris-intern:

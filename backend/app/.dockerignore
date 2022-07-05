@@ -1,0 +1,14 @@
+.git
+readme.md
+server/storage/app
+server/storage/logs
+server/storage/framework
+server/vendor
+server/bootstrap/cache
+server/.env
+server/supervisord.*
+server/storage/oath*
+.idea
+.wakatime-project
+.cache
+build.sh

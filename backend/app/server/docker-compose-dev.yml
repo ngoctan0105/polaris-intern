@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_DATABASE=polaris-intern
+      - MYSQL_ROOT_PASSWORD=123456
+    ports:
+      - 3307:3306
+    volumes:
+      - database:/var/lib/mysql
+    networks:
+      - polaris-intern
+volumes:
+  database:
+  redis_volume:
+networks:
+  polaris-intern:

@@ -73,7 +73,7 @@ export default class LoginScreen extends Vue {
               </div>
             </a>
           </div>
-          <GoogleLogin :callback="callback" prompt auto-login />
+          <!-- <GoogleLogin :callback="callback" prompt auto-login /> -->
         </form>
       </div>
     </div>
